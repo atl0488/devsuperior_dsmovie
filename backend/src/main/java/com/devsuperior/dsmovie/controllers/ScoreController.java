@@ -1,30 +1,21 @@
 package com.devsuperior.dsmovie.controllers;
 
 import com.devsuperior.dsmovie.dto.MovieDTO;
-import com.devsuperior.dsmovie.services.MovieService;
+import com.devsuperior.dsmovie.dto.ScoreDTO;
+import com.devsuperior.dsmovie.services.ScoreService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value = "/movies")
-public class MovieController {
+@RequestMapping(value = "/scores")
+public class ScoreController {
 
     @Autowired
-    MovieService movieService;
+    ScoreService scoreService;
 
-    @GetMapping
-    public Page<MovieDTO> findAll(Pageable pageable){
-        return  movieService.findAll(pageable);
-    }
-
-    @GetMapping(value = "/{id}")
-    public MovieDTO findById(@PathVariable Long id){
-        return  movieService.findById(id);
+    @PutMapping
+    public MovieDTO saveScore(@RequestBody ScoreDTO scoreDTO){
+         return scoreService.save(scoreDTO);
     }
 }
 
